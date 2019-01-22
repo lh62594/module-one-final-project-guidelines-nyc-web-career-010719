@@ -8,13 +8,11 @@
 # end
 
 def get_characters
-  i = 1
   data = []
-  while i < 15
+  for i in 1..2138
     response_string = RestClient.get("https://www.anapioficeandfire.com/api/characters/#{i}")
     data << JSON.parse(response_string)
     i += 1
   end
   data
-
 end
