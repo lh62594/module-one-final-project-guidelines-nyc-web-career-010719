@@ -9,8 +9,19 @@
 
 def get_characters
   data = []
-  for i in 1..2138
+  for i in 2101..2138
     response_string = RestClient.get("https://www.anapioficeandfire.com/api/characters/#{i}")
+    data << JSON.parse(response_string)
+    i += 1
+  end
+  data
+end
+
+
+def get_houses
+  data = []
+  for i in 401..444
+    response_string = RestClient.get("https://www.anapioficeandfire.com/api/houses/#{i}")
     data << JSON.parse(response_string)
     i += 1
   end
