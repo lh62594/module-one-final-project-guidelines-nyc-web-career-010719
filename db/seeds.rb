@@ -54,6 +54,19 @@ require_relative '../config/environment'
 # end
 
 
+# def create_character_house
+#   Character.all.each do |char|
+#     if char.allegiances != "[]"
+#       split_string_array(char.allegiances).each do |url|
+#         CharacterHouse.create(character_id: char.id, house_id: House.find_by(url: url).id)
+#       end
+#     end
+#   end
+# end
+#
+# create_character_house
+
+
 
 # binding.pry
 #

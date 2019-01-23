@@ -27,3 +27,8 @@ def get_houses
   end
   data
 end
+
+
+def split_string_array(string)
+  string[2..string.length-3].split(/[",]\D{3}/)
+end
