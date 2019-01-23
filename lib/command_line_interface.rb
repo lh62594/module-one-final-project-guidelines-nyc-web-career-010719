@@ -101,6 +101,8 @@ end
 def house_menu_selected?(input)
   if input == "1"
     enter_house_name
+  elsif input == "2"
+    top_10_largest_houses
   end
 end
 

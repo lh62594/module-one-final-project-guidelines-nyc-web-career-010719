@@ -21,5 +21,5 @@ def show_me_houses(char_name)
   array.map do |element|
     puts element
   end
-  cap_all_words(char_name)
+  # cap_all_words(char_name)
 end

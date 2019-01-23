@@ -1,3 +1,5 @@
+# require_relative '../config/environment'
+
 class House < ActiveRecord::Base
 
   has_many :character_houses

@@ -1,3 +1,4 @@
+# require_relative '../config/environment'
 # G.O.T. WIKI HOUSE METHODS
 
 # ------------ HELPER METHODS ------------ #
@@ -10,17 +11,18 @@ def return_menu?
   puts "|   [2] return to previous menu     |"
   puts "|-----------------------------------|"
   puts " "
-  gets.chomp
 end
 
 def choose_from_house_character_search
-  input = return_menu?
+  return_menu?
+  input = gets.chomp
   if input == "1"
     enter_house_name
   elsif input == "2"
     house_menu_option
   else
-    puts ""
+    puts "************** Invalid Input **************"
+    choose_from_house_character_search
   end
 end
 
@@ -60,5 +62,9 @@ def show_me_characters(house_name)
   puts " "
   puts "- - - - - - - - - - - - - - - - - - -"
 
-
+  choose_from_house_character_search
 end
+
+
+# binding.pry
+# puts "bye"
