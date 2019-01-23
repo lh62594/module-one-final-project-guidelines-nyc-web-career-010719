@@ -1,11 +1,37 @@
 require_relative '../config/environment'
 
+################ WELCOME ################
+def welcome
+  puts "welcome to Game of Thrones"
+end
+
+
+################ USER INPUT ################
+def get_character_from_user
+  puts "Please enter a character name"
+  gets.chomp
+end
+
+#############################################################
+####################### JEOPARDY GAME #######################
+#############################################################
+
+
+
+
+
+##############################################################
+########################## GOT WIKI ##########################
+##############################################################
+
+################ HELPER METHODS ################
+
 def cap_all_words(string)
   string.split.map(&:capitalize).join(' ')
 end
 
 
-#put in house name without "House"
+################ HOUSE METHODS ################
 def show_me_characters(house_name)
   found_houses = House.all.select do |house|
     house.name.include?(house_name.capitalize)
@@ -24,6 +50,8 @@ def show_me_characters(house_name)
 end
 
 
+
+################ CHARACTER METHODS ################
 def show_me_houses(char_name)
   characters = Character.all.select do |char|
     char.name.include?(cap_all_words(char_name))
@@ -39,11 +67,9 @@ def show_me_houses(char_name)
   cap_all_words(char_name)
 end
 
-binding.pry
-
-
-
-
+##############################################################
+##############################################################
+##############################################################
 
 
 
