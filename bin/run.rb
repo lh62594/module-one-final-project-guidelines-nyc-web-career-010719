@@ -2,7 +2,6 @@ require_relative '../config/environment'
 
 welcome
 
-main_menu
 wiki_or_game?
 # ui_main_menu = main_menu
 # wiki_or_game?(ui_main_menu)

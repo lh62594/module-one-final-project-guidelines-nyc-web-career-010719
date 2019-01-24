@@ -2,6 +2,8 @@
 # G.O.T. WIKI HOUSE METHODS
 
 # ~~~~~~~~~~~~~~~~~~~ OUTPUT HELPERS ~~~~~~~~~~~~~~~~~~~~ #
+
+#[1] Find all characters in a house
 def show_me_characters
 # user puts in a house name
 # method shows all the characters associated with house name
@@ -16,19 +18,24 @@ def show_me_characters
   else
     if house_array.count > 1
       house = clarify_which_house(house_array)
-      start_and_end_of_output
-      puts "     Characters in House #{house.name}:"
-      puts " "
-      members = split_string_array(house.swornMembers)
-      i = 1
-      members.map{|url| puts "  #{i}. #{Character.find_by(url: url).name}"
-        i += 1 }
-      start_and_end_of_output
+      output_characters(house)
+    else
+      house = house_array[0]
+      output_characters(house)
+    end
+    more_details = see_more_char_details?
+    if more_details == "Y"
+      show_info_of_character
+    elsif more_details == "N"
+      choose_from_houses_character_search
+    else
+      invalid_input
+      show_me_characters
     end
   end
-  choose_from_houses_character_search
 end #end of show_me_characters
 
+#[2] Find largest houses
 def top_largest_houses
 # user selects how many houses they want to see
 # method outputs top x number of houses (by size)
@@ -51,10 +58,19 @@ def top_largest_houses
       i += 1
     end
   start_and_end_of_output
-  choose_from_top_largest_houses
+
+  more_details = see_more_house_details?
+  if more_details == "Y"
+    find_info_of_house
+  elsif more_details == "N"
+    choose_from_top_largest_houses
+  else
+    invalid_input
+    top_largest_houses
+  end
 end #end of top_10_largest_houses method
 
-
+#[2] Find all houses of a region
 def find_all_houses_of_region
 # user selects which region from a menu of options
 # method outputs all the houses associated
@@ -67,11 +83,19 @@ def find_all_houses_of_region
     houses.map{|h| puts "       #{i}. #{h.name}"
     i += 1}
   start_and_end_of_output
-  see_more_house_details?
-  choose_from_find_all_houses_of_region
+
+  more_details = see_more_house_details?
+  if more_details == "Y"
+    find_info_of_house
+  elsif more_details == "N"
+    choose_from_find_all_houses_of_region
+  else
+    invalid_input
+    find_all_houses_of_region
+  end
 end #end of find_all_houses_of_region method
 
-
+#[4] Find info of a house
 def find_info_of_house
   house_name = enter_house_name
   house_array = House.all.select do |house|
@@ -89,6 +113,6 @@ def find_info_of_house
       house = house_array[0] #this is an object
       house_info_output(house)
     end
+    choose_from_find_info_of_house
   end
-
 end

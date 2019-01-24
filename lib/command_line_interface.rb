@@ -5,6 +5,7 @@
 # ~~~~~~~~~~~~~~~~~~~ MAIN MENU ~~~~~~~~~~~~~~~~~~~~ #
 
 def wiki_or_game?
+  main_menu
   input = gets.chomp
   if input == "1"
     wiki_main_menu_select
@@ -62,8 +63,13 @@ def house_menu_select
     find_all_houses_of_region
   elsif input == "4"
     find_info_of_house
+  elsif input == "5"
+    wiki_main_menu_select
+  elsif input == "6"
+    wiki_or_game?
   else
-    puts "whatever"
+    invalid_input
+    house_menu_select
   end
 end
 
@@ -110,6 +116,21 @@ def choose_from_find_all_houses_of_region
   end
 end
 
+def choose_from_find_info_of_house
+#user has just finished searching info of house
+#option to search again or return
+  return_menu?
+  input = gets.chomp
+  if input == "1"
+    find_info_of_house
+  elsif input == "2"
+    house_menu_select
+  else
+    invalid_input
+    choose_from_find_info_of_house
+  end
+end
+
 # ~~~~~~~~~~~~~~~ CHAR MENU INPUTS ~~~~~~~~~~~~~~~ #
 
 def character_menu_select
@@ -122,8 +143,11 @@ def character_menu_select
   elsif input =="2"
     show_me_houses
   elsif input == "3"
+    find_characters_by_culture
+  elsif input == "4"
+    wiki_main_menu_select
   elsif input == "5"
-    exit_app
+    wiki_or_game?
   else
     invalid_input
     character_menu_select
@@ -157,6 +181,19 @@ def choose_from_characters_house_search
   else
     invalid_input
     choose_from_characters_house_search
+  end
+end
+
+def choose_from_find_characters_by_culture
+  return_menu?
+  input = gets.chomp
+  if input == "1"
+    find_characters_by_culture
+  elsif input == "2"
+    character_menu_select
+  else
+    invalid_input
+    choose_from_find_characters_by_culture
   end
 end
 

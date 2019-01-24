@@ -27,7 +27,43 @@ def character_info_from_url(url)
 
 end
 
+def see_more_char_details?
+  puts "Would you like to see more details"
+  puts "of a specific character?"
+  puts " "
+  puts "      [Y]            [N]"
+  puts " "
+  gets.chomp.capitalize
+end
 
+def selected_culture
+  user_select_culture #in menu_option.rb
+  input = gets.chomp
+  if input == "1"
+    "Westeros"
+  elsif input == "2"
+    "Ironborn"
+  elsif input == "3"
+    "Valyrian"
+  elsif input == "4"
+    "Dornish"
+  elsif input == "5"
+    "Braavosi"
+  elsif input == "6"
+    "Dothraki"
+  elsif input == "7"
+    "Northmen"
+  elsif input == "8"
+    "Rivermen"
+  elsif input == "9"
+    "Stormlands"
+  elsif input == "10"
+    "Reach"
+  else
+    invalid_input
+    selected_culture
+  end
+end
 
 # ~~~~~~~~~~~~~~~~~~~ HOUSE HELPERS ~~~~~~~~~~~~~~~~~~~~ #
 def enter_house_name
@@ -37,7 +73,7 @@ def enter_house_name
 end
 
 def selected_region
-  user_select_region
+  user_select_region #in menu_option.rb
   input = gets.chomp
   if input == "1"
     "The Westerlands"
@@ -115,6 +151,21 @@ def house_info_output(house)
   start_and_end_of_output
 end #end of house_info_output method
 
+def output_characters(house) #gets house object
+  start_and_end_of_output
+  puts "     Characters in House #{house.name}:"
+  puts " "
+  members = split_string_array(house.swornMembers)
+  i = 1
+  members.map do |url|
+    if Character.find_by(url: url) != nil
+      puts "  #{i}. #{Character.find_by(url: url).name}"
+      i += 1
+    end
+  end
+  start_and_end_of_output
+end
+
 
 def see_more_house_details?
   puts "Would you like to see more details"
@@ -122,30 +173,5 @@ def see_more_house_details?
   puts " "
   puts "      [Y]            [N]"
   puts " "
-  input = gets.chomp.capitalize
-  if input == "Y"
-    find_info_of_house
-  elsif input == "N"
-    puts ""
-  else
-    invalid_input
-    see_more_house_details?
-  end
-end
-
-def see_more_char_details?
-  puts "Would you like to see more details"
-  puts "of a specific character?"
-  puts " "
-  puts "      [Y]            [N]"
-  puts " "
-  input = gets.chomp.capitalize
-  if input == "Y"
-    show_info_of_character
-  elsif input == "N"
-    puts ""
-  else
-    invalid_input
-    see_more_char_details?
-  end
+  gets.chomp.capitalize
 end

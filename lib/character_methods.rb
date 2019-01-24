@@ -30,7 +30,7 @@ def show_info_of_character
 end #end of show_info_of_character method
 
 
-# [2] Find a cahracter's allegiance
+# [2] Find a character's allegiance
 def show_me_houses
   char_name = enter_character_name
   characters = Character.all.select do |char|
@@ -53,4 +53,33 @@ def show_me_houses
     start_and_end_of_output
   end
   choose_from_characters_house_search
-end
+end #end of show_me_houses method
+
+#[3] Find characters by culture
+def find_characters_by_culture
+  culture = selected_culture
+
+  characters = Character.all.select do |char|
+    char.culture == culture
+  end
+
+  start_and_end_of_output
+  puts "   #{culture} Characters:"
+  puts " "
+  i = 1
+  characters.map do |char|
+    puts "     #{i}. #{char.name}"
+    i += 1
+  end
+  start_and_end_of_output
+
+  more_details = see_more_char_details?
+  if more_details == "Y"
+    show_info_of_character
+  elsif more_details == "N"
+    choose_from_find_characters_by_culture
+  else
+    invalid_input
+    find_characters_by_culture
+  end
+end #end of find_characters_by_culture method
