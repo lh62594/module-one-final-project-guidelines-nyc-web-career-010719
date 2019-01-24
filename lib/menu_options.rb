@@ -21,8 +21,6 @@ def welcome
   puts " "
 end
 
-
-
 def main_menu
   puts " "
   puts " |------------------------------------|"
@@ -42,6 +40,20 @@ def main_menu
   puts " Please enter your selection"
 end
 
+def game_menu
+  puts " "
+  puts " |------------------------------------|"
+  puts " |         W E L C O M E    T O       |"
+  puts " |------------------------------------|"
+  puts " |                                    |"
+  puts " |            GAME OF THRONES         |"
+  puts " |       ┬┌─┐┌─┐┌─┐┌─┐┬─┐┌┬┐┬ ┬┬      |"
+  puts " |       │├┤ │ │├─┘├─┤├┬┘ ││└┬┘│      |"
+  puts " |      └┘└─┘└─┘┴  ┴ ┴┴└──┴┘ ┴ o      |"
+  puts " |                                    |"
+  puts " |------------------------------------|"
+  puts " |------------------------------------|"
+end
 
 def wiki_main_menu
   puts " "

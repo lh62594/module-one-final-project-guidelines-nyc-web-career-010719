@@ -1,6 +1,5 @@
 #this file contains all the helper methods
 
-
 # ~~~~~~~~~~~~~~~~~~~ GLOBAL HELPERS ~~~~~~~~~~~~~~~~~~~~ #
 
 def cap_all_words(string)
@@ -64,6 +63,7 @@ def selected_culture
 end
 
 # ~~~~~~~~~~~~~~~~~~~ HOUSE HELPERS ~~~~~~~~~~~~~~~~~~~~ #
+
 def enter_house_name
   puts " "
   puts "Please enter the house name (without the word house):"

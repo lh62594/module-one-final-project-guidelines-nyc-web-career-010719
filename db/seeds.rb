@@ -66,6 +66,67 @@ require_relative '../config/environment'
 #
 # create_character_house
 
+Category.create(name: "Name The House")
+Category.create(name: "Who's Title")
+Category.create(name: "Guess Something")
+
+# binding.pry
+
+#1
+QuestionAnswer.create(question: "1) What is answer?",
+                      answer: "answer",
+                      value: 100,
+                      category_id: Category.find(1).id
+                      )
+#2
+QuestionAnswer.create(question: "2) What is answer?",
+                      answer: "answer",
+                      value: 200,
+                      category_id: Category.find(1).id
+                      )
+#3
+QuestionAnswer.create(question: "3) What is answer?",
+                      answer: "answer",
+                      value: 300,
+                      category_id: Category.find(1).id
+                      )
+#4
+QuestionAnswer.create(question: "4) What is answer?",
+                      answer: "answer",
+                      value: 100,
+                      category_id: Category.find(2).id
+                      )
+#5
+QuestionAnswer.create(question: "5) What is answer?",
+                      answer: "answer",
+                      value: 200,
+                      category_id: Category.find(2).id
+                      )
+#6
+QuestionAnswer.create(question: "6) What is answer?",
+                      answer: "answer",
+                      value: 300,
+                      category_id: Category.find(2).id
+                      )
+#7
+QuestionAnswer.create(question: "7) What is answer?",
+                      answer: "answer",
+                      value: 100,
+                      category_id: Category.find(3).id
+                      )
+#8
+QuestionAnswer.create(question: "8) What is answer?",
+                      answer: "answer",
+                      value: 200,
+                      category_id: Category.find(3).id
+                      )
+#9
+QuestionAnswer.create(question: "9) What is answer?",
+                      answer: "answer",
+                      value: 300,
+                      category_id: Category.find(3).id
+                      )
+
 
 
 # binding.pry
