@@ -212,7 +212,15 @@ end
 
 def game_menu_select
   game_menu
-  puts "Press any key to continue"
-  gets.chomp
-
+  puts "   Press any key to continue"
+  gets.chomp #any key will go to start_a_game
+  start_a_game
 end #end of game_menu_select method
+
+def start_a_game
+  puts " Here is the board"
+  jeopardy = Jeopardy.new
+  # jeopardy.reset_board
+  jeopardy.display_board(jeopardy.board_values)
+  jeopardy.play_game
+end

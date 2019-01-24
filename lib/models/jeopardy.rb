@@ -1,20 +1,49 @@
 class Jeopardy
-  attr_reader :score, :board
+  attr_reader :score, :board, :board_values
 
   def initialize
     @score = 0
+
+    @board = [QuestionAnswer.find(1),
+              QuestionAnswer.find(2),
+              QuestionAnswer.find(3),
+              QuestionAnswer.find(4),
+              QuestionAnswer.find(5),
+              QuestionAnswer.find(6),
+              QuestionAnswer.find(7),
+              QuestionAnswer.find(8),
+              QuestionAnswer.find(9)
+                ]
+
+    @board_values = [QuestionAnswer.find(1).value,
+                     QuestionAnswer.find(2).value,
+                     QuestionAnswer.find(3).value,
+                     QuestionAnswer.find(4).value,
+                     QuestionAnswer.find(5).value,
+                     QuestionAnswer.find(6).value,
+                     QuestionAnswer.find(7).value,
+                     QuestionAnswer.find(8).value,
+                     QuestionAnswer.find(9).value]
   end
+
 
   def display_board(board_values)
     puts
-    puts
+    puts "---------------------------------------------------------"
     puts " #{Category.find(1).name} |     #{Category.find(2).name}    |  #{Category.find(3).name} "
     puts "---------------------------------------------------------"
+    puts " "
     puts "       #{board_values[0]}      |        #{board_values[3]}         |      #{board_values[6]}     "
+    puts " "
     puts "---------------------------------------------------------"
+    puts " "
     puts "       #{board_values[1]}      |        #{board_values[4]}         |      #{board_values[7]}     "
+    puts " "
     puts "---------------------------------------------------------"
+    puts " "
     puts "       #{board_values[2]}      |        #{board_values[5]}         |      #{board_values[8]}     "
+    puts " "
+    puts "---------------------------------------------------------"
     puts
     puts
   end
@@ -25,7 +54,7 @@ class Jeopardy
   end
 
   def game_over?
-     if Board_values[0] == "XXX" && Board_values[1] == "XXX" && Board_values[2] == "XXX" && Board_values[3] == "XXX" && Board_values[4] == "XXX" && Board_values[5] == "XXX" && Board_values[6] == "XXX" && Board_values[7] == "XXX" && Board_values[8] == "XXX"
+     if board_values[0] == "XXX" && board_values[1] == "XXX" && board_values[2] == "XXX" && board_values[3] == "XXX" && board_values[4] == "XXX" && board_values[5] == "XXX" && board_values[6] == "XXX" && board_values[7] == "XXX" && board_values[8] == "XXX"
        true
      else
        false
@@ -33,7 +62,7 @@ class Jeopardy
   end
 
   def game_start?
-     if Board_values[0] != "XXX" && Board_values[1] != "XXX" && Board_values[2] != "XXX" && Board_values[3] != "XXX" && Board_values[4] != "XXX" && Board_values[5] != "XXX" && Board_values[6] != "XXX" && Board_values[7] != "XXX" && Board_values[8] != "XXX"
+     if board_values[0] != "XXX" && board_values[1] != "XXX" && board_values[2] != "XXX" && board_values[3] != "XXX" && board_values[4] != "XXX" && board_values[5] != "XXX" && board_values[6] != "XXX" && board_values[7] != "XXX" && board_values[8] != "XXX"
        true
      else
        false
@@ -61,6 +90,7 @@ class Jeopardy
 
   def find_category_id(category)
     Category.find_by(name: category).id
+    # binding.pry
   end
 
   def ask_value
@@ -93,6 +123,7 @@ class Jeopardy
     if game_over?
       puts "Game is over, thank you, your score is #{score}!"
       reset_score
+      wiki_or_game?
     else
       category_name = ask_category
       category_id = find_category_id(category_name)
@@ -101,13 +132,13 @@ class Jeopardy
       question = QuestionAnswer.find(question_id).question
       puts
       puts "#{question}"
-        if Board_values[question_id-1] == "XXX"
+        if board_values[question_id-1] == "XXX"
           puts
           puts "Sorry, this question has been asked, please try again"
-          display_board(Board_values)
+          display_board(board_values)
           play_game
         else
-          change_board(question_id, Board_values)
+          change_board(question_id, board_values)
           correct_answer = QuestionAnswer.find_by(category_id: category_id, value: value).answer.capitalize
           answer  = ask_answer
             if answer == correct_answer
@@ -115,13 +146,13 @@ class Jeopardy
               puts
               puts "You're right!, you've won #{value} points!"
               puts "Your score is now #{@score}!"
-              display_board(Board_values)
+              display_board(board_values)
               play_game
             else
               puts
               puts "Sorry, incorrect!"
               puts "Your score is now #{@score}!"
-              display_board(Board_values)
+              display_board(board_values)
               play_game
             end
         end
