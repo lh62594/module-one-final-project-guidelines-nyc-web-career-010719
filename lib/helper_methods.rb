@@ -7,8 +7,6 @@ def cap_all_words(string)
   string.split.map(&:capitalize).join(' ')
 end
 
-
-
 # ~~~~~~~~~~~~~~~~~~~ CHARACTER HELPERS ~~~~~~~~~~~~~~~~~~~~ #
 
 def enter_character_name
