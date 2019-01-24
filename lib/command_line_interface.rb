@@ -36,7 +36,7 @@ def wiki_or_game?(input)
   elsif input == "4"
     puts "exit the game"
   else
-    puts "************** Invalid Input **************"
+    invalid_input
   end
 end
 
@@ -52,8 +52,8 @@ def wiki_main_menu
   puts "|-----------------------------------|"
   puts "|-------- G.O.T. WIKI MENU ---------|"
   puts "|                                   |"
-  puts "|   [1] Find Info by Character      |"
-  puts "|   [2] Find Info by House          |"
+  puts "|   [1] Go to Character Menu        |"
+  puts "|   [2] Go to House Menu            |"
   puts "|                                   |"
   puts "|-----------------------------------|"
   puts "|-----------------------------------|"
@@ -69,7 +69,7 @@ def character_or_house?(input)
     house_menu_option
     # figure out a way to exit game??
   else
-    puts "************** Invalid Input **************"
+    invalid_input
     new_input = wiki_main_menu
     character_or_house?(new_input)
   end
@@ -84,7 +84,7 @@ def house_menu_option
   puts "|------------------------------------|"
   puts "|                                    |"
   puts "| [1] Find all characters in a house |"
-  puts "| [2] Top 10 largest houses          |"
+  puts "| [2] Find largest houses            |"
   puts "| [3] Find all houses of a region    |"
   puts "| [4]                                | "
   puts "| [5] Return to Wiki Menu            |"
@@ -103,6 +103,8 @@ def house_menu_selected?(input)
     enter_house_name
   elsif input == "2"
     top_10_largest_houses
+  else
+    puts "whatever"
   end
 end
 
@@ -115,8 +117,8 @@ def character_menu_option
   puts "|--------- G.O.T. CHARACTERS --------|"
   puts "|------------------------------------|"
   puts "|                                    |"
-  puts "| [1] Find info of character         |"
-  puts "| [2]           |"
+  puts "| [1] Find info of a character       |"
+  puts "| [2] Find a character's allegiance  |"
   puts "| [3] "
   puts "| [4] "
   puts "| [5] "
@@ -125,7 +127,20 @@ def character_menu_option
   puts "|------------------------------------|"
   puts " "
   puts "Please enter your selection"
-  gets.chomp
+  input = gets.chomp
+  character_menu_selection?(input)
+end
+
+def character_menu_selection?(input)
+  if input == "1"
+    show_info_of_character
+  elsif input == "2"
+    show_me_houses
+  elsif input == "3"
+
+  else
+    invalid_input
+  end
 end
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
