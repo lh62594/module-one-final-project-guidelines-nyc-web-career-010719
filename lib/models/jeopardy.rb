@@ -1,6 +1,7 @@
 class Jeopardy
   attr_reader :score, :board, :board_values
 
+# ~~~~~~~~~~~~~~~~~~~ CLASS METHODS ~~~~~~~~~~~~~~~~~~~~ #
   def initialize
     @score = 0
 
@@ -107,12 +108,7 @@ class Jeopardy
   end
 
   def ask_answer
-    answer = cap_all_words(gets.chomp)
-    if answer == "Exit"
-      wiki_or_game?
-    else
-      answer
-    end
+    cap_all_words(gets.chomp)
   end
 
   def reset_score
@@ -128,6 +124,9 @@ class Jeopardy
       category_name = ask_category
       category_id = find_category_id(category_name)
       value = ask_value
+      # if value == "exit" || value == "Exit"
+      #   wiki_or_game?
+      # else
       question_id = QuestionAnswer.find_by(category_id: category_id, value: value).id
       question = QuestionAnswer.find(question_id).question
       puts
@@ -141,7 +140,9 @@ class Jeopardy
           change_board(question_id, board_values)
           correct_answer = QuestionAnswer.find_by(category_id: category_id, value: value).answer.capitalize
           answer  = ask_answer
-            if answer == correct_answer
+            if answer == "Exit"
+              wiki_or_game?
+            elsif correct_answer
               @score += value.to_i
               puts
               puts "You're right!, you've won #{value} points!"
