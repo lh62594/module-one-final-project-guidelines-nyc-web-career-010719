@@ -2,156 +2,171 @@
 ######################################################
 #                      WELCOME                       #
 ######################################################
+# ~~~~~~~~~~~~~~~~~~~ MAIN MENU ~~~~~~~~~~~~~~~~~~~~ #
 
-# ~~~~~~~~~~~~~~~~~~~ MAIN MENU ~~~~~~~~~~~~~~~~~~~ #
-def welcome
-  puts "Welcome to GAME OF THRONES"
-  #maybe do a cool text picture if have time
-end
-
-def main_menu
-  puts " "
-  puts "|-----------------------------------|"
-  puts "|------------ MAIN MENU ------------|"
-  puts "|                                   |"
-  puts "|         [1] G.O.T. Wiki           |"
-  puts "|         [2] G.O.T. Game           |"
-  puts "|         [3] About                 |"
-  puts "|         [4] Exit                  |"
-  puts "|                                   |"
-  puts "|-----------------------------------|"
-  puts "|-----------------------------------|"
-  puts " "
-  puts "Please enter your selection"
-  gets.chomp
-end
-
-def wiki_or_game?(input)
+def wiki_or_game?
+  input = gets.chomp
   if input == "1"
-    puts "goes to GOT Wiki menu"
+    wiki_main_menu_select
   elsif input == "2"
-    puts "goes to GOT Game menu"
+    puts "****** goes to GOT Game menu ******"
   elsif input == "3"
     puts "gives description about wiki and game"
   elsif input == "4"
-    puts "exit the game"
+    exit_app
   else
     invalid_input
+    wiki_or_game?
   end
 end
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-
-# add helper method: if chose 1 from main menu
-# go to Wiki Menu
-# if chose 2 from main menu, go to Game menu
+######################################################
+##################### G.O.T. WIKI ####################
+######################################################
 
 # ~~~~~~~~~~~~~~~~~~~ WIKI MENU ~~~~~~~~~~~~~~~~~~~~ #
-def wiki_main_menu
-  puts " "
-  puts "|-----------------------------------|"
-  puts "|-------- G.O.T. WIKI MENU ---------|"
-  puts "|                                   |"
-  puts "|   [1] Go to Character Menu        |"
-  puts "|   [2] Go to House Menu            |"
-  puts "|                                   |"
-  puts "|-----------------------------------|"
-  puts "|-----------------------------------|"
-  puts " "
-  puts "Please enter your selection"
-  gets.chomp
+def wiki_main_menu_select
+  wiki_main_menu
+  input = gets.chomp
+  character_or_house?(input)
 end
 
 def character_or_house?(input)
   if input == "1"
-    character_menu_option
+    character_menu_select
   elsif input == "2"
-    house_menu_option
-    # figure out a way to exit game??
+    house_menu_select
+  elsif input == "3"
+    wiki_main_menu_select
+  elsif input == "4"
+    exit_app
   else
     invalid_input
-    new_input = wiki_main_menu
+    new_input = wiki_main_menu_select
     character_or_house?(new_input)
   end
 end
 
 
-# ~~~~~~~~~~~~~~~~~~~ HOUSE MENU ~~~~~~~~~~~~~~~~~~~~ #
-def house_menu_option
-  puts " "
-  puts "|------------------------------------|"
-  puts "|----------- G.O.T. HOUSES ----------|"
-  puts "|------------------------------------|"
-  puts "|                                    |"
-  puts "| [1] Find all characters in a house |"
-  puts "| [2] Find largest houses            |"
-  puts "| [3] Find all houses of a region    |"
-  puts "| [4]                                | "
-  puts "| [5] Return to Wiki Menu            |"
-  puts "| [5] Return to Main Menu            |"
-  puts "|                                    |"
-  puts "|------------------------------------|"
-  puts "|------------------------------------|"
-  puts " "
-  puts "Please enter your selection"
+# ~~~~~~~~~~~~~~~ HOUSE MENU INPUTS ~~~~~~~~~~~~~~~ #
+def house_menu_select
+# main menu of house functions
+# user can select what they want to do via house
+  house_menu
   input = gets.chomp
-  house_menu_selected?(input)
-end
-
-def house_menu_selected?(input)
   if input == "1"
-    enter_house_name
+    show_me_characters
   elsif input == "2"
-    top_10_largest_houses
+    top_largest_houses
+  elsif input == "3"
+    find_all_houses_of_region
+  elsif input == "4"
+    find_info_of_house
   else
     puts "whatever"
   end
 end
 
-
-# ~~~~~~~~~~~~~~~~~~~ CHAR MENU ~~~~~~~~~~~~~~~~~~~~ #
-
-def character_menu_option
-  puts " "
-  puts "|------------------------------------|"
-  puts "|--------- G.O.T. CHARACTERS --------|"
-  puts "|------------------------------------|"
-  puts "|                                    |"
-  puts "| [1] Find info of a character       |"
-  puts "| [2] Find a character's allegiance  |"
-  puts "| [3] "
-  puts "| [4] "
-  puts "| [5] "
-  puts "|                                    |"
-  puts "|------------------------------------|"
-  puts "|------------------------------------|"
-  puts " "
-  puts "Please enter your selection"
+def choose_from_houses_character_search
+# user chooses after they have searched for
+# all the characters in a house
+  return_menu?
   input = gets.chomp
-  character_menu_selection?(input)
-end
-
-def character_menu_selection?(input)
   if input == "1"
-    show_info_of_character
+    show_me_characters
   elsif input == "2"
-    show_me_houses
-  elsif input == "3"
-
+    house_menu_select
   else
     invalid_input
+    choose_from_houses_character_search
   end
 end
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+def choose_from_top_largest_houses
+  return_menu?
+  input = gets.chomp
+  if input == "1"
+    top_largest_houses
+  elsif input == "2"
+    house_menu_select
+  else
+    invalid_input
+    choose_from_top_largest_houses
+  end
+end
 
-##############################################################
-######################### G.O.T. WIKI ########################
-##############################################################
+def choose_from_find_all_houses_of_region
+#user has just finished searching houses in region
+#option to search again or return
+  return_menu?
+  input = gets.chomp
+  if input == "1"
+    find_all_houses_of_region
+  elsif input == "2"
+    house_menu_select
+  else
+    invalid_input
+    choose_from_find_all_houses_of_region
+  end
+end
+
+# ~~~~~~~~~~~~~~~ CHAR MENU INPUTS ~~~~~~~~~~~~~~~ #
+
+def character_menu_select
+# main menu of character functions
+# user can select what they want to do via char
+  character_menu
+  input = gets.chomp
+  if input == "1"
+    show_info_of_character
+  elsif input =="2"
+    show_me_houses
+  elsif input == "3"
+  elsif input == "5"
+    exit_app
+  else
+    invalid_input
+    character_menu_select
+  end
+end
+
+def choose_menu_from_character_info_search
+#user has just finished searching character info
+#option to search again or return
+  return_menu?
+  input = gets.chomp
+  if input == "1"
+    show_info_of_character
+  elsif input == "2"
+    character_menu_select
+  else
+    invalid_input
+    choose_menu_from_character_info_search
+  end
+end
+
+def choose_from_characters_house_search
+#user has just finished searching character allegience
+#option to search again or return
+  return_menu?
+  input = gets.chomp
+  if input == "1"
+    show_me_houses
+  elsif input == "2"
+    character_menu_select
+  else
+    invalid_input
+    choose_from_characters_house_search
+  end
+end
+
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
 
 
 
-#############################################################
-####################### JEOPARDY GAME #######################
-#############################################################
+#####################################################
+################### JEOPARDY GAME ###################
+#####################################################
