@@ -3,33 +3,41 @@
 
 def welcome
   puts " "
-  puts " -----------------------------------"
-  puts " ################################### "
-  puts " ##                               ## "
-  puts " ##            Welcome            ## "
-  puts " ##              to               ## "
-  puts " ##        GAME OF THRONES        ## "
-  puts " ##                               ## "
-  puts " ################################### "
-  puts " -----------------------------------"
   puts " "
-  #maybe do a cool text picture if have time
+  puts "          W E L C O M E    T O"
+  puts " "
+  puts "*|-----------------------------------|*"
+  puts "*|            ┌─┐┌─┐┌┬┐┌─┐           |*"
+  puts "*|            │ ┬├─┤│││├┤            |*"
+  puts "*|            └─┘┴ ┴┴ ┴└─┘           |*"
+  puts "*|               ┌─┐┌─┐              |*"
+  puts "*|               │ │├┤               |*"
+  puts "*|               └─┘└                |*"
+  puts "*|  ┌─┬─┐┬  ┬┬──┐┌──┐┌─┐ ┌┌──┐┌──┐   |*"
+  puts "*|    │  ├──┤├─┬┘│  ││ │ │├─┤ └──┐   |*"
+  puts "*|    ┴  ┴  ┴┴ └─└──┘┘ └─┘└──┘└──┘   |*"
+  puts "*|-----------------------------------|*"
+  puts " "
+  puts " "
 end
 
 
 
 def main_menu
   puts " "
-  puts " |-----------------------------------|"
-  puts " |------------ MAIN MENU ------------|"
-  puts " |                                   |"
-  puts " |         [1] G.O.T. Wiki           |"
-  puts " |         [2] G.O.T. Game           |"
-  puts " |         [3] About                 |"
-  puts " |         [4] Exit G.O.T.           |"
-  puts " |                                   |"
-  puts " |-----------------------------------|"
-  puts " |-----------------------------------|"
+  puts " |------------------------------------|"
+  puts " |      ┌┬┐┌─┐┬┌┐┌  ┌┬┐┌─┐┌┐┌┬ ┬      |"
+  puts " |      │││├─┤││││  │││├┤ ││││ │      |"
+  puts " |      ┴ ┴┴ ┴┴┘└┘  ┴ ┴└─┘┘└┘└─┘      |"
+  puts " |------------------------------------|"
+  puts " |                                    |"
+  puts " |         [1] G.O.T. Wiki            |"
+  puts " |         [2] G.O.T. Game            |"
+  puts " |         [3] About                  |"
+  puts " |         [4] Exit G.O.T.            |"
+  puts " |                                    |"
+  puts " |------------------------------------|"
+  puts " |------------------------------------|"
   puts " "
   puts " Please enter your selection"
 end
@@ -55,7 +63,7 @@ end
 
 def return_menu?
   puts " "
-  puts "     Press:"
+  puts "    Enter:"
   puts "      [1] to search again"
   puts "      [2] return to previous menu"
   puts " "
@@ -103,7 +111,8 @@ end
 def user_select_region
   puts " "
   puts " "
-  puts "  Please select the number of a region from below:"
+  puts "       Please select the number of a "
+  puts "       region from below:"
   puts " "
   puts "         [1]  The Westerlands"
   puts "         [2]  The Vale"
@@ -122,7 +131,8 @@ end
 def user_select_culture
   puts " "
   puts " "
-  puts "  Please select the number of a culture from below:"
+  puts "       Please select the number of a"
+  puts "       culture from below:"
   puts " "
   puts "         [1]  Westerosi"
   puts "         [2]  Ironborn"
@@ -140,13 +150,13 @@ end
 
 def invalid_input
   puts "- - - - - - - - - - - - - - - - - - - - - - - - -"
-  puts "                Invalid Input"
+  puts "                 Invalid Input"
   puts "- - - - - - - - - - - - - - - - - - - - - - - - -"
 end
 
 def invalid_character
   puts "- - - - - - - - - - - - - - - - - - - - - - - - -"
-  puts "              Invalid Character"
+  puts "               Invalid Character"
   puts "- - - - - - - - - - - - - - - - - - - - - - - - -"
 end
 
@@ -160,15 +170,13 @@ end
 def exit_app
   puts " "
   puts " "
-  puts "|-----------------------------------------------------|"
-  puts "|-----------------------------------------------------|"
-  puts "|                                                     |"
-  puts "|    ▒█▀▀█ ▒█▀▀▀█ ▒█▀▀▀█ ▒█▀▀▄ ▒█▀▀█ ▒█░░▒█ ▒█▀▀▀ █   |"
-  puts "|    ▒█░▄▄ ▒█░░▒█ ▒█░░▒█ ▒█░▒█ ▒█▀▀▄ ▒█▄▄▄█ ▒█▀▀▀ ▀   |"
-  puts "|    ▒█▄▄█ ▒█▄▄▄█ ▒█▄▄▄█ ▒█▄▄▀ ▒█▄▄█ ░░▒█░░ ▒█▄▄▄ ▄   |"
-  puts "|                                                     |"
-  puts "|-----------------------------------------------------|"
-  puts "|-----------------------------------------------------|"
+  puts " "
+  puts " |------------------------------------|"
+  puts " |       ┌─┐┌─┐┌─┐┌┬┐┌┐ ┬ ┬┌─┐┬       |"
+  puts " |       │ ┬│ ││ │ ││├┴┐└┬┘├┤ │       |"
+  puts " |       └─┘└─┘└─┘─┴┘└─┘ ┴ └─┘o       |"
+  puts " |------------------------------------|"
+  puts " "
   puts " "
   puts " "
 end

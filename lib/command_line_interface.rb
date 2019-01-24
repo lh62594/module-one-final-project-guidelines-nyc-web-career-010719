@@ -4,6 +4,11 @@
 ######################################################
 # ~~~~~~~~~~~~~~~~~~~ MAIN MENU ~~~~~~~~~~~~~~~~~~~~ #
 
+def hit_any_key_to_continue
+  puts "   Hit any key to continue"
+  gets.chomp
+end
+
 def wiki_or_game?
   main_menu
   input = gets.chomp

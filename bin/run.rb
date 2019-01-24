@@ -1,7 +1,7 @@
 require_relative '../config/environment'
 
 welcome
-
+hit_any_key_to_continue
 wiki_or_game?
 # ui_main_menu = main_menu
 # wiki_or_game?(ui_main_menu)

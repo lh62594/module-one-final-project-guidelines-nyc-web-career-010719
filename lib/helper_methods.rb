@@ -28,8 +28,8 @@ def character_info_from_url(url)
 end
 
 def see_more_char_details?
-  puts "Would you like to see more details"
-  puts "of a specific character?"
+  puts " Would you like to see more details"
+  puts " of a specific character?"
   puts " "
   puts "      [Y]            [N]"
   puts " "
@@ -168,8 +168,8 @@ end
 
 
 def see_more_house_details?
-  puts "Would you like to see more details"
-  puts "of a specific house?"
+  puts " Would you like to see more details"
+  puts " of a specific house?"
   puts " "
   puts "      [Y]            [N]"
   puts " "

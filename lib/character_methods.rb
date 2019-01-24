@@ -25,8 +25,8 @@ def show_info_of_character
       puts "   Allegiances:"
         get_allegiances(character).map{|element| puts "      #{element}"}
     start_and_end_of_output
+    choose_menu_from_character_info_search
   end
-  choose_menu_from_character_info_search
 end #end of show_info_of_character method
 
 
@@ -51,8 +51,8 @@ def show_me_houses
       puts " "
       array.map{|element| puts "   #{element}"}
     start_and_end_of_output
+    choose_from_characters_house_search
   end
-  choose_from_characters_house_search
 end #end of show_me_houses method
 
 #[3] Find characters by culture
