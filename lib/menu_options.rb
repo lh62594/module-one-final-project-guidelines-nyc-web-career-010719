@@ -192,3 +192,7 @@ def exit_app
   puts " "
   puts " "
 end
+
+def jeopardy_board
+
+end 

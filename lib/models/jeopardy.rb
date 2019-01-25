@@ -1,5 +1,5 @@
 class Jeopardy
-  attr_reader :score, :board, :board_values
+  attr_reader :score, :board, :board_values, :turn_count
 
 # ~~~~~~~~~~~~~~~~~~~ CLASS METHODS ~~~~~~~~~~~~~~~~~~~~ #
   def initialize
@@ -25,26 +25,28 @@ class Jeopardy
                      QuestionAnswer.find(7).value,
                      QuestionAnswer.find(8).value,
                      QuestionAnswer.find(9).value]
+
+    @turn_count = 1
   end
 
 
   def display_board(board_values)
     puts
-    puts "---------------------------------------------------------"
-    puts " #{Category.find(1).name} |     #{Category.find(2).name}    |  #{Category.find(3).name} "
-    puts "---------------------------------------------------------"
+    puts "-----------------------------------------------------"
+    puts " #{Category.find(1).name} |  #{Category.find(2).name}  |  #{Category.find(3).name} "
+    puts "-----------------------------------------------------"
     puts " "
-    puts "       #{board_values[0]}      |        #{board_values[3]}         |      #{board_values[6]}     "
+    puts "       #{board_values[0]}      |        #{board_values[3]}        |      #{board_values[6]}     "
     puts " "
-    puts "---------------------------------------------------------"
+    puts "-----------------------------------------------------"
     puts " "
-    puts "       #{board_values[1]}      |        #{board_values[4]}         |      #{board_values[7]}     "
+    puts "       #{board_values[1]}      |        #{board_values[4]}        |      #{board_values[7]}     "
     puts " "
-    puts "---------------------------------------------------------"
+    puts "-----------------------------------------------------"
     puts " "
-    puts "       #{board_values[2]}      |        #{board_values[5]}         |      #{board_values[8]}     "
+    puts "       #{board_values[2]}      |        #{board_values[5]}        |      #{board_values[8]}     "
     puts " "
-    puts "---------------------------------------------------------"
+    puts "-----------------------------------------------------"
     puts
     puts
   end
@@ -70,36 +72,26 @@ class Jeopardy
      end
   end
 
+  def reset_score
+    @score = 0
+  end
+
   def cap_all_words(string)
    string.split.map(&:capitalize).join(' ')
   end
 
-  def ask_category
-    puts
-    puts "Please enter a category:"
-    category = cap_all_words(gets.chomp)
-    # category = cap_all_words(category)
-    if category == "Exit"
-      wiki_or_game?
-    elsif Category.find_by(name: category)
-      category
-    else
-      ask_category
-    end
-  end
-
-
-  def find_category_id(category)
-    Category.find_by(name: category).id
-    # binding.pry
+  def end_game
+    wiki_or_game?
   end
 
   def ask_value
     puts
-    puts "Please enter a value:"
+    puts "   Please enter a value:"
+    puts " "
       value = gets.chomp
       if value == "exit" || value == "Exit"
-        wiki_or_game?
+        end_game
+        # binding.pry
       elsif QuestionAnswer.find_by(value: value)
         value
       else
@@ -107,57 +99,88 @@ class Jeopardy
       end
   end
 
-  def ask_answer
-    cap_all_words(gets.chomp)
+  def ask_category
+    puts " "
+    puts "   Please enter a category:"
+    puts " "
+    category_input = cap_all_words(gets.chomp)
+    if category_input == "Exit"
+      end_game
+    elsif Category.find_by(name: category_input)
+      Category.find_by(name: category_input)
+    else
+      ask_category
+    end
   end
 
-  def reset_score
-    @score = 0
+  def ask_answer
+    answer = cap_all_words(gets.chomp)
+    if answer == "Exit"
+      end_game
+    else
+      answer
+    end
   end
 
   def play_game
     if game_over?
-      puts "Game is over, thank you, your score is #{score}!"
+      puts "Game is over, thank you, your total score is: #{score}!"
       reset_score
-      wiki_or_game?
+      end_game
     else
-      category_name = ask_category
-      category_id = find_category_id(category_name)
+      # binding.pry
+      category = ask_category
+      return if !category
+      # binding.pry
+      category_name = category.name
+      category_id = category.id
       value = ask_value
-      # if value == "exit" || value == "Exit"
-      #   wiki_or_game?
-      # else
-      question_id = QuestionAnswer.find_by(category_id: category_id, value: value).id
-      question = QuestionAnswer.find(question_id).question
-      puts
-      puts "#{question}"
-        if board_values[question_id-1] == "XXX"
-          puts
-          puts "Sorry, this question has been asked, please try again"
+      return if !value
+      # binding.pry
+      question_inst = QuestionAnswer.find_by(category_id: category_id, value: value)
+      question_id = question_inst.id
+      question = question_inst.question
+      # binding.pry
+      correct_answer = cap_all_words(question_inst.answer)
+      if board_values[question_id-1] == "XXX"
+        puts
+        puts "Sorry, this question has been asked, please try again"
+        display_board(board_values)
+      else
+        change_board(question_id, board_values)
+        puts
+        puts "#{question}"
+        guessed_answer = ask_answer
+        return if !guessed_answer
+        if guessed_answer == correct_answer
+          @score += value.to_i
+          puts " "
+          puts "  |-------------------------------------------------|"
+          puts " "
+          puts "      That's correct!, you've won #{value} points!  "
+          puts " "
+          puts "      Your current score is: #{@score}!"
+          puts " "
+          puts "  |-------------------------------------------------|"
+          puts " "
           display_board(board_values)
-          play_game
         else
-          change_board(question_id, board_values)
-          correct_answer = QuestionAnswer.find_by(category_id: category_id, value: value).answer.capitalize
-          answer  = ask_answer
-            if answer == "Exit"
-              wiki_or_game?
-            elsif correct_answer
-              @score += value.to_i
-              puts
-              puts "You're right!, you've won #{value} points!"
-              puts "Your score is now #{@score}!"
-              display_board(board_values)
-              play_game
-            else
-              puts
-              puts "Sorry, incorrect!"
-              puts "Your score is now #{@score}!"
-              display_board(board_values)
-              play_game
-            end
+          puts " "
+          puts " "
+          puts "   *****-----            Sorry!            -----*****"
+          puts "   *****-----        That answer is        -----*****"
+          puts "   *****-----          INCORRECT           -----*****"
+          puts " "
+          puts "  |-------------------------------------------------|"
+          puts "      Your score is: #{@score} !    "
+          puts "  |-------------------------------------------------|"
+          puts " "
+          display_board(board_values)
         end
+      end
+    play_game
     end
   end
+
 
 end #end of Jeopardy class
