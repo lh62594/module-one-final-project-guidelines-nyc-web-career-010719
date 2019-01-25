@@ -11,18 +11,18 @@ def show_info_of_character
     show_info_of_character
   else
     start_and_end_of_output
-      puts "     CHARACTER INFO"
+      puts "       CHARACTER INFO"
       puts " "
-      puts "   Name: #{character.name}"
-      puts "   Title: #{character.titles[1..character.titles.length-2]}"
-      puts "   Culture: #{character.culture}"
-      puts "   Born: #{character.born}"
+      puts "     Name: #{character.name}"
+      puts "     Title: #{character.titles[1..character.titles.length-2]}"
+      puts "     Culture: #{character.culture}"
+      puts "     Born: #{character.born}"
       if character.died == ""
-        puts "   Status: Alive"
+        puts "     Status: Alive"
       else
-        puts "   Status: Dead"
+        puts "     Status: Dead"
       end
-      puts "   Allegiances:"
+      puts "     Allegiances:"
         get_allegiances(character).map{|element| puts "      #{element}"}
     start_and_end_of_output
     choose_menu_from_character_info_search

@@ -10,7 +10,7 @@ end
 
 def enter_character_name
   puts " "
-  puts "Please enter a character name:"
+  puts "     Please enter a character name:"
   gets.chomp
 end
 
@@ -25,10 +25,10 @@ def character_info_from_url(url)
 end
 
 def see_more_char_details?
-  puts " Would you like to see more details"
-  puts " of a specific character?"
+  puts "     Would you like to see more details"
+  puts "     of a specific character?"
   puts " "
-  puts "      [Y]            [N]"
+  puts "           [Y]            [N]"
   puts " "
   gets.chomp.capitalize
 end
@@ -66,7 +66,8 @@ end
 
 def enter_house_name
   puts " "
-  puts "Please enter the house name (without the word house):"
+  puts "     Please enter the house name"
+  puts "     (without the word house):"
   gets.chomp
 end
 
@@ -103,14 +104,14 @@ def clarify_which_house(house_array)
 #this method is called if there are multipl houses
 #that match a house input
   puts " "
-  puts "    There are multiple houses that match"
-  puts "    your input:"
+  puts "     There are multiple houses that match"
+  puts "     your input:"
   puts " "
     i = 1
-    house_array.map{|h| puts "       [#{i}] #{h.name}"
+    house_array.map{|h| puts "        [#{i}] #{h.name}"
       i += 1}
   puts " "
-  puts "    Please enter which house you meant"
+  puts "     Please enter which house you meant"
   puts " "
   #the above will return a list of options
   #that user can select from
@@ -127,32 +128,32 @@ def house_info_output(house)
 #this method returns the info of a house
 #input is a house object
   start_and_end_of_output
-  puts "       ~ #{house.name} ~"
+  puts "         ~ #{house.name} ~"
   puts " "
-  puts "      Name: #{house.name}"
-  puts "      Region: #{house.region}"
+  puts "        Name: #{house.name}"
+  puts "        Region: #{house.region}"
   if house.overlord == ""
-    puts "      Ruling House: unknown"
+    puts "        Ruling House: unknown"
   else
-    puts "      Ruling House: #{House.find_by(url: house.overlord).name}"
+    puts "        Ruling House: #{House.find_by(url: house.overlord).name}"
   end
-  puts "      Coat of Arms: #{house.coatOfArms}"
-  puts "      Motto: #{house.words}"
-  puts "      Founded: #{house.founded}"
-  puts "      Ancestral Weapons: #{house.ancestralWeapons[2..house.ancestralWeapons.length-3]}"
-  puts "      Number of Sworn Members: #{split_string_array(house.swornMembers).count}"
+  puts "        Coat of Arms: #{house.coatOfArms}"
+  puts "        Motto: #{house.words}"
+  puts "        Founded: #{house.founded}"
+  puts "        Ancestral Weapons: #{house.ancestralWeapons[2..house.ancestralWeapons.length-3]}"
+  puts "        Number of Sworn Members: #{split_string_array(house.swornMembers).count}"
   start_and_end_of_output
 end #end of house_info_output method
 
 def output_characters(house) #gets house object
   start_and_end_of_output
-  puts "     Characters in House #{house.name}:"
+  puts "       Characters in House #{house.name}:"
   puts " "
   members = split_string_array(house.swornMembers)
   i = 1
   members.map do |url|
     if Character.find_by(url: url) != nil
-      puts "  #{i}. #{Character.find_by(url: url).name}"
+      puts "     #{i}. #{Character.find_by(url: url).name}"
       i += 1
     end
   end
@@ -161,10 +162,10 @@ end
 
 
 def see_more_house_details?
-  puts " Would you like to see more details"
-  puts " of a specific house?"
+  puts "     Would you like to see more details"
+  puts "     of a specific house?"
   puts " "
-  puts "      [Y]            [N]"
+  puts "            [Y]            [N]"
   puts " "
   gets.chomp.capitalize
 end

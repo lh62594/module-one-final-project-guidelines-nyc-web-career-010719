@@ -40,8 +40,9 @@ def top_largest_houses
 # user selects how many houses they want to see
 # method outputs top x number of houses (by size)
   start_and_end_of_output
-  puts "How many houses do you want to see?"
-  puts "Input a number between 1 and 50:"
+  puts "     How many houses do you want to see?"
+  puts " "
+  puts "     Input a number between 1 and 50:"
   puts " "
   input = gets.chomp.to_i
 
@@ -50,11 +51,11 @@ def top_largest_houses
   end.reverse
 
   start_and_end_of_output
-    puts "     Top #{input} Largest Houses:"
+    puts "       Top #{input} Largest Houses:"
     puts " "
     i = 1
     ordered_houses[0..input-1].map do |house|
-      puts "  #{i}. #{house.name} - #{split_string_array(house.swornMembers).count} members"
+      puts "     #{i}. #{house.name} - #{split_string_array(house.swornMembers).count} members"
       i += 1
     end
   start_and_end_of_output
@@ -78,9 +79,9 @@ def find_all_houses_of_region
   houses = House.all.select{|house| house.region == region}
   i = 1
   start_and_end_of_output
-  puts "  Houses in #{region}:"
+  puts "     Houses in #{region}:"
   puts " "
-    houses.map{|h| puts "       #{i}. #{h.name}"
+    houses.map{|h| puts "         #{i}. #{h.name}"
     i += 1}
   start_and_end_of_output
 

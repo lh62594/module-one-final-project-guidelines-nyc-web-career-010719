@@ -32,21 +32,21 @@ class Jeopardy
 
   def display_board(board_values)
     puts
-    puts "-----------------------------------------------------"
-    puts " #{Category.find(1).name} |  #{Category.find(2).name}  |  #{Category.find(3).name} "
-    puts "-----------------------------------------------------"
-    puts " "
-    puts "       #{board_values[0]}      |        #{board_values[3]}        |      #{board_values[6]}     "
-    puts " "
-    puts "-----------------------------------------------------"
-    puts " "
-    puts "       #{board_values[1]}      |        #{board_values[4]}        |      #{board_values[7]}     "
-    puts " "
-    puts "-----------------------------------------------------"
-    puts " "
-    puts "       #{board_values[2]}      |        #{board_values[5]}        |      #{board_values[8]}     "
-    puts " "
-    puts "-----------------------------------------------------"
+    puts "   |-----------------------------------------------------|"
+    puts "   | #{Category.find(1).name} |  #{Category.find(2).name}  |  #{Category.find(3).name}    |"
+    puts "   |-----------------------------------------------------|"
+    puts "   |                                                     |"
+    puts "   |       #{board_values[0]}      |        #{board_values[3]}        |      #{board_values[6]}       |"
+    puts "   |                                                     |"
+    puts "   |-----------------------------------------------------|"
+    puts "   |                                                     |"
+    puts "   |       #{board_values[1]}      |        #{board_values[4]}        |      #{board_values[7]}       |"
+    puts "   |                                                     |"
+    puts "   |-----------------------------------------------------|"
+    puts "   |                                                     |"
+    puts "   |       #{board_values[2]}      |        #{board_values[5]}        |      #{board_values[8]}       |"
+    puts "   |                                                     |"
+    puts "   |-----------------------------------------------------|"
     puts
     puts
   end
@@ -81,6 +81,10 @@ class Jeopardy
   end
 
   def end_game
+    puts " "
+    puts "   Thanks for playing!"
+    puts "   Your final score is #{@score}!"
+    puts " "
     wiki_or_game?
   end
 
@@ -144,7 +148,8 @@ class Jeopardy
       correct_answer = cap_all_words(question_inst.answer)
       if board_values[question_id-1] == "XXX"
         puts
-        puts "Sorry, this question has been asked, please try again"
+        puts "   Sorry, this question has been asked."
+        puts "   Please try again."
         display_board(board_values)
       else
         change_board(question_id, board_values)
@@ -172,7 +177,7 @@ class Jeopardy
           puts "   *****-----          INCORRECT           -----*****"
           puts " "
           puts "  |-------------------------------------------------|"
-          puts "      Your score is: #{@score} !    "
+          puts "                Your score is: #{@score} !    "
           puts "  |-------------------------------------------------|"
           puts " "
           display_board(board_values)

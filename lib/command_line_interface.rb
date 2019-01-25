@@ -6,7 +6,6 @@
 # ~~~~~~~~~~~~~~~~~~~ MAIN MENU ~~~~~~~~~~~~~~~~~~~~ #
 
 def hit_any_key_to_continue
-  puts "   Hit any key to continue"
   gets.chomp
 end
 
@@ -28,16 +27,34 @@ def wiki_or_game?
 end
 
 def give_about_details
-  puts "About G.O.T. Wiki"
-  puts "Start search by selecting either"
-  puts "character or house menu."
+  puts "   ----------------------------------------------------"
+  puts "                     About G.O.T. Wiki"
+  puts "   ----------------------------------------------------"
+  puts "    Welcome to the Game of Thrones Wiki, where you"
+  puts "    can find information on Game of Thrones Characters"
+  puts "    and Houses. Start a search by selecting [1] G.O.T."
+  puts "    Wiki and go to either the character or house menu."
+  puts "    "
+  puts "   "
+  puts "   ----------------------------------------------------"
+  puts "                     About G.O.T. Game"
+  puts "   ----------------------------------------------------"
+  puts "    Select [2] from the Main Menu to play Game of"
+  puts "    Thrones Jeopardy! Play to test your knowledge "
+  puts "    about the Game of Thrones universe. Complete the"
+  puts "    Jeopardy board to finish the game!"
+  puts "    "
+  puts "   "
+  puts "   ----------------------------------------------------"
+  puts "    Created 2019 (TM)"
+  puts "    Jordan Ginor & Linya Hu"
+  puts "    Flatiron School"
+  puts "   ----------------------------------------------------"
+  puts "   "
   puts " "
-  puts "About G.O.T. Game"
-  puts "Start a Game of Thrones Jeopardy"
-  puts "game."
   puts " "
-  puts "Created 2019"
-  puts "Press any key to [return]"
+  puts "   Press any key to [return]"
+  puts " "
   gets.chomp
   wiki_or_game?
 end
@@ -226,13 +243,12 @@ end
 
 def game_menu_select
   game_menu
-  puts "   Press any key to continue"
   gets.chomp #any key will go to start_a_game
   start_a_game
 end #end of game_menu_select method
 
 def start_a_game
-  puts " Here is the board"
+  jeopardy_board
   jeopardy = Jeopardy.new
   # jeopardy.reset_board
   jeopardy.display_board(jeopardy.board_values)
