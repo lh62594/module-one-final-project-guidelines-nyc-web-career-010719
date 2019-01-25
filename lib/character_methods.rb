@@ -39,13 +39,13 @@ def show_me_houses
 
   if characters == []
     invalid_character
+    show_me_houses
   else
     array = characters.map do |char|
       char.houses.map do |house|
         house.name
       end
     end.flatten.uniq
-
     start_and_end_of_output
       puts "     #{cap_all_words(char_name)}:"
       puts " "

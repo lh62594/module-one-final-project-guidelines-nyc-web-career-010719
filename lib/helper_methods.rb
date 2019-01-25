@@ -139,11 +139,6 @@ def house_info_output(house)
   puts "      Coat of Arms: #{house.coatOfArms}"
   puts "      Motto: #{house.words}"
   puts "      Founded: #{house.founded}"
-  if house.founder == ""
-    puts "      Founder:"
-  else
-    puts "      Founder: #{Character.find_by(url: house.founder).name}"
-  end
   puts "      Ancestral Weapons: #{house.ancestralWeapons[2..house.ancestralWeapons.length-3]}"
   puts "      Number of Sworn Members: #{split_string_array(house.swornMembers).count}"
   start_and_end_of_output

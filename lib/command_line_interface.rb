@@ -18,13 +18,28 @@ def wiki_or_game?
   elsif input == "2"
     game_menu_select
   elsif input == "3"
-    puts "gives description about wiki and game"
+    puts give_about_details
   elsif input == "4"
     exit_app
   else
     invalid_input
     wiki_or_game?
   end
+end
+
+def give_about_details
+  puts "About G.O.T. Wiki"
+  puts "Start search by selecting either"
+  puts "character or house menu."
+  puts " "
+  puts "About G.O.T. Game"
+  puts "Start a Game of Thrones Jeopardy"
+  puts "game."
+  puts " "
+  puts "Created 2019"
+  puts "Press any key to [return]"
+  gets.chomp
+  wiki_or_game?
 end
 
 
