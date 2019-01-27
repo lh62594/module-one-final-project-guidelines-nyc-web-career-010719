@@ -1,6 +1,6 @@
 # G.O.T. WIKI CHARACTER METHODS
 
-# ~~~~~~~~~~~~~~~~~~~ OUTPUT HELPERS ~~~~~~~~~~~~~~~~~~~~ #
+# ~~~~~~~~~~~~~~~~~~~ OUTPUT METHODS ~~~~~~~~~~~~~~~~~~~~ #
 
 # [1] Find info of a character
 def show_info_of_character
@@ -11,21 +11,30 @@ def show_info_of_character
     show_info_of_character
   else
     start_and_end_of_output
-      puts "       CHARACTER INFO"
+      puts "                 CHARACTER INFO FOR #{character.name.upcase}"
       puts " "
-      puts "     Name: #{character.name}"
-      puts "     Title: #{character.titles[1..character.titles.length-2]}"
-      puts "     Culture: #{character.culture}"
-      puts "     Born: #{character.born}"
+      puts "                 Name: #{character.name}"
+      puts "                 Title: #{character.titles[1..character.titles.length-2]}"
+      puts "                 Culture: #{character.culture}"
+      puts "                 Born: #{character.born}"
       if character.died == ""
-        puts "     Status: Alive"
+        puts "                 Status: Alive"
       else
-        puts "     Status: Dead"
+        puts "                 Status: Dead"
       end
-      puts "     Allegiances:"
-        get_allegiances(character).map{|element| puts "      #{element}"}
+      puts "                 Allegiances:"
+        get_allegiances(character).map{|element| puts "                     #{element}"}
     start_and_end_of_output
-    choose_menu_from_character_info_search
+
+    input = return_menu?
+    if input.include?("1")
+      show_info_of_character
+    elsif input.include?("2")
+      character_menu_select
+    elsif input.include?("3")
+      house_menu_select
+    end
+
   end
 end #end of show_info_of_character method
 
@@ -36,7 +45,6 @@ def show_me_houses
   characters = Character.all.select do |char|
     char.name.include?(cap_all_words(char_name))
   end
-
   if characters == []
     invalid_character
     show_me_houses
@@ -47,11 +55,20 @@ def show_me_houses
       end
     end.flatten.uniq
     start_and_end_of_output
-      puts "     #{cap_all_words(char_name)}:"
+      puts "          #{cap_all_words(char_name)}'s Allegiances:"
       puts " "
-      array.map{|element| puts "   #{element}"}
+      array.map{|element| puts "               #{element}"}
     start_and_end_of_output
-    choose_from_characters_house_search
+
+    input = return_menu?
+    if input.include?("1")
+      show_me_houses
+    elsif input.include?("2")
+      character_menu_select
+    elsif input.include?("3")
+      house_menu_select
+    end
+
   end
 end #end of show_me_houses method
 
@@ -64,22 +81,29 @@ def find_characters_by_culture
   end
 
   start_and_end_of_output
-  puts "   #{culture} Characters:"
+  puts "             #{culture} Characters:"
   puts " "
   i = 1
   characters.map do |char|
-    puts "     #{i}. #{char.name}"
+    puts "               #{i}. #{char.name}"
     i += 1
   end
   start_and_end_of_output
 
-  more_details = see_more_char_details?
-  if more_details == "Y"
+  input = see_more_char_details?
+  if input.include?("Y")
     show_info_of_character
-  elsif more_details == "N"
-    choose_from_find_characters_by_culture
-  else
-    invalid_input
-    find_characters_by_culture
+  elsif input.include?("N")
+
+    input = return_menu?
+    if input.include?("1")
+      find_characters_by_culture
+    elsif input.include?("2")
+      character_menu_select
+    elsif input.include?("3")
+      house_menu_select
+    end
+
   end
+
 end #end of find_characters_by_culture method

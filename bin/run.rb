@@ -1,8 +1,9 @@
 require_relative '../config/environment'
 
 welcome
-hit_any_key_to_continue
+sleep(1.5)
 wiki_or_game?
+
 
 # def find_the_starks
 #   House.all.select do |house|

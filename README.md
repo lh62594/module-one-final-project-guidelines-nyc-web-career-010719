@@ -15,7 +15,7 @@
   about the Game of Thrones universe. Complete the
   Jeopardy board to finish the game!
 
- 
+
  ----------------------------------------------------
   Created 2019 (TM)
   Jordan Ginor & Linya Hu
@@ -27,3 +27,17 @@ This Game of Thrones application
 was built on the API of Ice and Fire
 available through this link:
 https://www.anapioficeandfire.com/
+
+
+
+Here are a few user stories that are implemented
+in this app:
+
+[1] As a user, I want to know what house(s) a character
+    belongs to.
+[2] As a user, I want to know which character(s) belong
+    to a given house.
+[3] As a user, I want to find more information about
+    a given character or house.
+[4] As a user, I want to test my knowledge of
+    Game of Thrones through a fun trivia game.
